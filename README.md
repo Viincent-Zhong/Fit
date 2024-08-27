@@ -1,4 +1,5 @@
 # Fit
 
-Frontend Vuejs, Bootstrap, Tailwind css, axios
-Backend Nodejs Express
+Frontend Vuejs, Bootstrap, Tailwind css, axios  
+Backend Nodejs Express  
+Database postgresql  
