@@ -1,5 +1,6 @@
 import express, { Request, Response } from 'express';
 import dotenv from 'dotenv';
+import router from './routes/api';
 
 dotenv.config();
 
@@ -18,6 +19,9 @@ app.use(express.json());
 // .then(() => console.log('MongoDB connected'))
 // .catch(err => console.log(err));
 
+// Router
+
+app.use('/api', router);
 // Routes
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello World!');
