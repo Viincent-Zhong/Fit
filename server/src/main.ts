@@ -1,5 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import mongoose from 'mongoose';
+
 import router from './routes/api';
 
 dotenv.config();
@@ -12,10 +14,12 @@ const app = express();
 app.use(express.json());
 
 // // Connect to MongoDB
-// mongoose.connect(process.env.MONGODB_URI!, {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-// })
+try {
+  console.log('Connecting to MongoDB');
+  mongoose.connect(process.env.MONGODB_URI!)
+} catch (error) {
+  console.log('Error connecting to MongoDB : ', error);
+}
 // .then(() => console.log('MongoDB connected'))
 // .catch(err => console.log(err));
 
