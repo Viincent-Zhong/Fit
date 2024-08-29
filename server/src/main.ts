@@ -1,4 +1,4 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
 import dotenv from 'dotenv';
 import router from './routes/api';
 
@@ -20,12 +20,7 @@ app.use(express.json());
 // .catch(err => console.log(err));
 
 // Router
-
 app.use('/api', router);
-// Routes
-app.get('/', (req: Request, res: Response) => {
-  res.send('Hello World!');
-});
 
 // Only start the server if this file is executed directly 
 // Used for test so superset don't run the server
