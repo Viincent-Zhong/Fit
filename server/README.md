@@ -1,9 +1,10 @@
 # Routes
 
-[Login route](#Login-route)
-[Travel route](#Travel-route)
-[Day route](#Day-route)
-[Activity route](#Activity-route)
+[Login route](#login-route)
+[Refresh token](#refresh-token)
+[Travel route](#travel-route)
+[Day route](#day-route)
+[Activity route](#activity-route)
 
 
 ### 
@@ -11,11 +12,21 @@
 ```
 url/api/login (POST):
         - status 201 (User created) :
-            -> Cookie('auth') = (value) id
+            -> accessToken 
+            -> refreshToken
         - status 200 (User logged in) :
-            -> Cookie('auth') = (value) id
-        - status 200 (Cookie already found)
+            -> accessToken 
+            -> refreshToken
 
+```
+
+**Refresh token**
+```
+url/api/refresh-token (POST):
+    - body : refreshToken
+    - status 200 (Token validated) :
+        -> accessToken
+        -> refreshToken
 ```
 
 **Travel route**
@@ -34,31 +45,31 @@ url/api/travel/ (DELETE):
     - status 200 (Deleted successfully)
     - status 400 (Failed request)
 
-url/api/travel/ (PATCH):
+url/api/travel/name (PATCH):
     - query: id
     - body : name
     - status 200 (Changed successfully)
     - status 400 (Failed request)
 
-url/api/travel/ (PATCH):
+url/api/travel/sdate (PATCH):
     - query: id
     - body : startDate
     - status 200 (Changed successfully)
     - status 400 (Failed request)
 
-url/api/travel/ (PATCH):
+url/api/travel/edate (PATCH):
     - query: id
     - body : endDate
     - status 200 (Changed successfully)
     - status 400 (Failed request)
 
-url/api/travel/ (PATCH):
+url/api/travel/expense (PATCH):
     - query: id
     - body : totalExpense
     - status 200 (Changed successfully)
     - status 400 (Failed request)
 
-url/api/travel/ (PATCH):
+url/api/travel/budget (PATCH):
     - query: id
     - body : budget
     - status 200 (Changed successfully)
@@ -76,19 +87,33 @@ url/api/day/ (POST):
     - status 201 (Day created)
     - status 400 (Failed request)
 
-url/api/day/ (PATCH):
+url/api/day/delete-one (DELETE):
+    - query: id
+    - status 201 (Day deleted)
+    - status 400 (Failed request)
+
+url/api/day/delete-array (DELETE):
+    - query: [id]
+    - status 201 (Days deleted)
+    - status 400 (Failed request)
+
+url/api/day/ (DELETE):
+    - status 201 (Days deleted)
+    - status 400 (Failed request)
+
+url/api/day/date (PATCH):
     - query: id
     - body : date
     - status 200 (Changed successfully)
     - status 400 (Failed request)
 
-url/api/day/ (PATCH):
+url/api/day/description (PATCH):
     - query: id
     - body : description
     - status 200 (Changed successfully)
     - status 400 (Failed request)
 
-url/api/day/ (PATCH):
+url/api/day/expense (PATCH):
     - query: id
     - body : expense
     - status 200 (Changed successfully)
@@ -106,18 +131,22 @@ url/api/activity/ (POST):
     - status 201 (Activity created)
     - status 400 (Failed request)
 
-url/api/activity/ (DELETE):
+url/api/activity/delete-one (DELETE):
     - id
     - status 200 (Activity deleted)
     - status 400 (Failed request)
 
-url/api/activity/ (PATCH):
+url/api/activity/ (DELETE):
+    - status 200 (Activities deleted)
+    - status 400 (Failed request)
+
+url/api/activity/name (PATCH):
     - query: id
     - body : name
     - status 200 (Changed successfully)
     - status 400 (Failed request)
 
-url/api/activity/ (PATCH):
+url/api/activity/expense (PATCH):
     - query: id
     - body : expense
     - status 200 (Changed successfully)
